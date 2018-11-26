@@ -7,6 +7,11 @@ class RpgPresenter {
         initIntroductionPart()
         initStartDungeonPart()
         initWeaponChoicePart()
+        initRooms()
+    }
+
+    private fun initRooms() {
+        mainPlayer.room = DataManager.getInitialRoom()
     }
 
     private fun initWeaponChoicePart() {
@@ -41,9 +46,9 @@ class RpgPresenter {
 
     tailrec fun onAnswerWeaponChoiceReceived(answer: String) {
         var weapon: Weapon? = when(answer) {
-            ANSWER_1 -> Weapon.SWORD
-            ANSWER_2 -> Weapon.AXE
-            ANSWER_3 -> Weapon.BOW
+            ANSWER_1 -> Weapon.Sword("Épée", 12)
+            ANSWER_2 -> Weapon.Axe("Hache", 14)
+            ANSWER_3 -> Weapon.Bow("Arc", 11, 15)
             else -> null
         }
         if (weapon == null) view.askWeaponChoiceAnswer()
