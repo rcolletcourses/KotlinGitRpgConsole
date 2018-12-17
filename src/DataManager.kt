@@ -2,13 +2,17 @@ object DataManager {
 
     private var rooms: List<Room>? = null
 
+    init {
+        buildRooms()
+    }
+
     private fun buildRooms() {
-        val startRoom = Room("Start Room")
-        val room1 = Room("Room 1")
-        val room2 = Room("Room 2")
-        val room3 = Room("Room 3")
-        val room4 = Room("Room 4")
-        val endRoom = Room("End Room")
+        val startRoom = Room(RoomType.ROOM_INIT)
+        val room1 = Room(RoomType.ROOM_1)
+        val room2 = Room(RoomType.ROOM_2)
+        val room3 = Room(RoomType.ROOM_3)
+        val room4 = Room(RoomType.ROOM_4, isLocked = true)
+        val endRoom = Room(RoomType.ROOM_END, isLocked = true)
 
         startRoom.northRoom = room1
         room1.northRoom = room2
@@ -26,7 +30,7 @@ object DataManager {
         room4.westRoom = room1
 
         endRoom.southRoom = room2
-
+        rooms = ArrayList()
         rooms = arrayListOf(startRoom, room1, room2, room3, room4, endRoom)
     }
 

@@ -1,5 +1,24 @@
 class RpgConsole(val presenter: RpgPresenter) : RpgView {
 
+    override fun askMovementAnswer() {
+        print("Answer : ")
+        presenter.onMovementAnswerReceived(readLine()!!)
+        println()
+    }
+
+    override fun showPossibility(direction: Direction) {
+        println(" - ${direction.key} -> Room: ${direction.label}")
+    }
+
+    override fun showMovementQuestion() {
+        println("Quelles directions choisissez vous ?")
+    }
+
+    override fun showCurrentRoom(type: String) {
+        println()
+        println("* Vous êtes actuellement dans : $type *")
+    }
+
     override fun showChosenWeapon(weapon: Weapon) {
         println("Très bien tu as donc choisis : ")
         println("""

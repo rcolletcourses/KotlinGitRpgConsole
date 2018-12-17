@@ -10,4 +10,8 @@ interface RpgView {
     fun showWeaponChoiceQuestion()
     fun askWeaponChoiceAnswer()
     fun showChosenWeapon(weapon: Weapon)
+    fun showCurrentRoom(type: String)
+    fun showMovementQuestion()
+    fun showPossibility(north: Direction)
+    fun askMovementAnswer()
 }

@@ -8,6 +8,61 @@ class RpgPresenter {
         initStartDungeonPart()
         initWeaponChoicePart()
         initRooms()
+        initRoomsEvents()
+    }
+
+    private fun initRoomsEvents() {
+        mainPlayer.room?.type?.also {
+            view.showCurrentRoom(it.label)
+            when (it) {
+                RoomType.ROOM_INIT -> handleInitRoomEvent()
+                RoomType.ROOM_1 -> handleRoom1Event()
+                RoomType.ROOM_2 -> handleRoom2Event()
+                RoomType.ROOM_3 -> handleRoom3Event()
+                RoomType.ROOM_4 -> handleRoom4Event()
+                RoomType.ROOM_END -> handleEndingRoomEvent()
+            }
+            handleMovement()
+        }
+
+    }
+
+    private fun handleMovement() {
+        view.showMovementQuestion()
+        mainPlayer.room?.also {
+            it.northRoom?.also {
+                view.showPossibility(Direction.NORTH)
+            }
+            it.eastRoom?.also {
+                view.showPossibility(Direction.EAST)
+            }
+            it.southRoom?.also {
+                view.showPossibility(Direction.SOUTH)
+            }
+            it.westRoom?.also {
+                view.showPossibility(Direction.WEST)
+            }
+        }
+        view.askMovementAnswer()
+
+    }
+
+    private fun handleEndingRoomEvent() {
+    }
+
+    private fun handleRoom4Event() {
+    }
+
+    private fun handleRoom3Event() {
+    }
+
+    private fun handleRoom2Event() {
+    }
+
+    private fun handleRoom1Event() {
+    }
+
+    private fun handleInitRoomEvent() {
     }
 
     private fun initRooms() {
@@ -53,5 +108,18 @@ class RpgPresenter {
         }
         if (weapon == null) view.askWeaponChoiceAnswer()
         mainPlayer.weapon = weapon
+    }
+
+    fun onMovementAnswerReceived(answer: String) {
+        when(answer) {
+            Direction.NORTH.key -> mainPlayer.updateNewRoom(mainPlayer.room?.northRoom)
+            Direction.SOUTH.key -> {}
+            Direction.WEST.key -> {}
+            Direction.EAST.key -> {}
+        }
+    }
+
+    fun Player.updateNewRoom(room: Room?) {
+
     }
 }
