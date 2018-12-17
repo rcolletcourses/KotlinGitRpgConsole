@@ -1,4 +1,4 @@
-import java.lang.Exception
+package data.model
 
 sealed class Weapon(open val label: String, open val damage: Int) {
 

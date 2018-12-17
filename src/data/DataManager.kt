@@ -1,3 +1,8 @@
+package data
+
+import data.model.Room
+import data.model.RoomType
+
 object DataManager {
 
     private var rooms: List<Room>? = null
@@ -36,5 +41,5 @@ object DataManager {
 
     fun getRooms() {}
 
-    fun getInitialRoom() = rooms?.first()
+    fun getInitialRoom() = rooms?.find { it.type == RoomType.ROOM_INIT }
 }

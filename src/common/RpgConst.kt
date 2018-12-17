@@ -1,3 +1,5 @@
+package common
+
 const val YES_ANSWER = "Y"
 const val NO_ANSWER = "N"
 

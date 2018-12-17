@@ -1,3 +1,8 @@
+package presentation
+
+import data.model.Direction
+import data.model.Weapon
+
 interface RpgView {
     fun showWelcomeMessage()
     fun askNickname()
@@ -14,4 +19,5 @@ interface RpgView {
     fun showMovementQuestion()
     fun showPossibility(north: Direction)
     fun askMovementAnswer()
+    fun showRoomLocked()
 }

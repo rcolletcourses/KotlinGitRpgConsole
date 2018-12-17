@@ -1,4 +1,18 @@
+package presentation
+
+import common.ANSWER_1
+import common.ANSWER_2
+import common.ANSWER_3
+import common.NO_ANSWER
+import common.YES_ANSWER
+import data.model.Direction
+import data.model.Weapon
+
 class RpgConsole(val presenter: RpgPresenter) : RpgView {
+
+    override fun showRoomLocked() {
+        println("La porte est fermée, il faudrait une clé pour l'ouvrir...")
+    }
 
     override fun askMovementAnswer() {
         print("Answer : ")
@@ -7,7 +21,7 @@ class RpgConsole(val presenter: RpgPresenter) : RpgView {
     }
 
     override fun showPossibility(direction: Direction) {
-        println(" - ${direction.key} -> Room: ${direction.label}")
+        println(" - ${direction.key} -> data.model.Room: ${direction.label}")
     }
 
     override fun showMovementQuestion() {
@@ -56,8 +70,8 @@ class RpgConsole(val presenter: RpgPresenter) : RpgView {
 
     override fun showStartDungeonQuestion() {
         println("Veux tu entrer dans le donjon ?")
-        println(" ${YES_ANSWER} -> pour commencer")
-        println(" ${NO_ANSWER} -> pour quitter")
+        println(" $YES_ANSWER -> pour commencer")
+        println(" $NO_ANSWER -> pour quitter")
     }
 
     override fun showNickname(nickname: String) {

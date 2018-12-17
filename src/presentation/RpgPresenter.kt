@@ -1,3 +1,13 @@
+package presentation
+
+import common.ANSWER_1
+import common.ANSWER_2
+import common.ANSWER_3
+import common.NO_ANSWER
+import common.YES_ANSWER
+import data.*
+import data.model.*
+
 class RpgPresenter {
 
     private val view: RpgConsole = RpgConsole(this)
@@ -113,13 +123,22 @@ class RpgPresenter {
     fun onMovementAnswerReceived(answer: String) {
         when(answer) {
             Direction.NORTH.key -> mainPlayer.updateNewRoom(mainPlayer.room?.northRoom)
-            Direction.SOUTH.key -> {}
-            Direction.WEST.key -> {}
-            Direction.EAST.key -> {}
+            Direction.SOUTH.key -> mainPlayer.updateNewRoom(mainPlayer.room?.southRoom)
+            Direction.WEST.key -> mainPlayer.updateNewRoom(mainPlayer.room?.westRoom)
+            Direction.EAST.key -> mainPlayer.updateNewRoom(mainPlayer.room?.eastRoom)
         }
+        initRoomsEvents()
     }
 
-    fun Player.updateNewRoom(room: Room?) {
-
+    private fun Player.updateNewRoom(newRoom: Room?) {
+        newRoom?.also {
+            if(!newRoom.isLocked) {
+                this.room = newRoom
+                return
+            } else {
+                view.showRoomLocked()
+            }
+        }
+        handleMovement()
     }
 }
