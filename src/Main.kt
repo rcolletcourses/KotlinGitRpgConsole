@@ -4,5 +4,7 @@ fun main(args: Array<String>) {
     val rpgPresenter = RpgPresenter()
 }
 
-// programmation fonc
-// clean packages
+
+// TP n°2
+// Gestion inventaire (récupérer une potion ou un clé)
+// Gestion clés ( ouvrir les portes fermées avec les clés récupérées dans l'inventaire)
